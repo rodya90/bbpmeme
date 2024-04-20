@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TFI MANIA</title>
+    <style>body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    
+   
+    
+    img {
+        position: absolute;
+    }
+    </style>
+</head>
+<body>
+    <audio id="sound" src="amogus.mp3"></audio>
+    <button id="spawnBtn">Spawn Image</button>
+    <div id="container"></div>
+
+    <script >document.getElementById('spawnBtn').addEventListener('click',()=>{ 
+    spawnImage();
+    
+}
+);
+
+        function spawnImage() {
+            const img_list = ['img.jpeg','allu-arjun.gif']
+            const ad_list =['aa.mp3','anr.mp3']
+            const container = document.getElementById('container');
+            const img = document.createElement('img');
+            
+            const sound = new Audio(ad_list[Math.round(Math.random())]); // Create a new audio element
+    
+            sound.play();
+            img.src = img_list[Math.round(Math.random())]; // Replace 'image_url.jpg' with the actual image URL
+            img.style.width = img.width; // Adjust image size as needed
+            img.style.height = '50px'; // Adjust image size as needed
+            img.style.top = `${Math.random() * 350}px`; // Random top position
+            img.style.left = '-50px'; // Initial left position (off-screen)
+            container.appendChild(img);
+            
+        
+            // Animate the image
+            const speed = 5; // Adjust animation speed as needed
+            const moveInterval = setInterval(() => {
+                const currentLeft = parseInt(img.style.left);
+                if (currentLeft >= 1050) { // Check if image reached the right border
+                    clearInterval(moveInterval);
+                    container.removeChild(img); // Remove the image from the DOM after animation
+                } else {
+                    img.style.left = `${currentLeft + speed}px`;
+                }
+            }, 20); // Adjust interval for smoother animation
+        }</script>
+</body>
+</html>
